@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="src" path="node_modules/@capacitor/app/android/src/main/java"/>
+	<classpathentry kind="src" path="node_modules/@capacitor/haptics/android/src/main/java"/>
+	<classpathentry kind="src" path="node_modules/@capacitor/keyboard/android/src/main/java"/>
+	<classpathentry kind="src" path="node_modules/@capacitor/status-bar/android/src/main/java"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>

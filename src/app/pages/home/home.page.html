@@ -1,0 +1,38 @@
+<ion-header>
+  <ion-toolbar color="success">
+  	<ion-buttons slot="start">
+  		<ion-menu-button></ion-menu-button>
+  	</ion-buttons>
+    <ion-title>home</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+	<ion-list color="success">
+		<ion-item color="success">
+			<ion-avatar slot="start">
+				<img src="https://st4.depositphotos.com/1012074/25277/v/600/depositphotos_252773324-stock-illustration-young-avatar-face-with-sunglasses.jpg"/>
+			</ion-avatar>
+			<ion-label>
+				<h1>Maxime BOULARD</h1>
+				<p>Gathered: <span class="money">$ 15,00</span></p>
+			</ion-label>
+		</ion-item>
+	</ion-list>
+	
+	<app-pickup-call-card status="hold" updatedAt="27/10/2021 08:47:38" createdAt="26/10/2021" 
+		notes="We have two full bags, one with plastic and one with glass">
+		<ion-card-header header>
+			<ion-card-subtitle>
+				Last pickup call
+			</ion-card-subtitle>
+		</ion-card-header>
+		<ion-button color="success" fill="clear" size="full" footer (click)="goToPickupCalls()">See all...</ion-button>
+	</app-pickup-call-card>
+	
+	<ion-fab vertical="bottom" horizontal="end" slot="fixed">
+	    <ion-fab-button color="success" (click)="newPickupCall()">
+	     	<ion-icon name="add"></ion-icon>
+	    </ion-fab-button>
+  	</ion-fab>
+</ion-content>
