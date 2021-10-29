@@ -71,7 +71,8 @@ export class LoginPage implements OnInit, OnDestroy {
 		const toaster = await this.toastController.create({
 			position: 'bottom',
 			message: loginState.error.message,
-			color: 'danger'
+			color: 'danger',
+			duration: 3000
 		});
 		toaster.present();
 	}
@@ -82,7 +83,8 @@ export class LoginPage implements OnInit, OnDestroy {
 		const toaster = await this.toastController.create({
 			position: 'bottom',
 			message: 'Recovery email sent',
-			color: 'primary'
+			color: 'primary',
+			duration: 3000
 		});
 		toaster.present();
 	}
