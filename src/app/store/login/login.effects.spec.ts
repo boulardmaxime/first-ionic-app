@@ -15,7 +15,7 @@ describe('Login effects', () => {
 	let error = {error: 'error'};
 	let user = new User();
 	user.id = 'anyUserId';
-	
+
 	let authServiceMock = {
 		recoverEmailPassword: (email: string) => {
 			if (email === 'error@email.com'){

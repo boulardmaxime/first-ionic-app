@@ -1,17 +1,33 @@
-import { FormBuilder, FormGroup, ValidatorFn, Validators } from "@angular/forms";
+import { FormBuilder, FormGroup, ValidatorFn, Validators } from '@angular/forms';
+
+declare var google;
 
 export class RegisterPageForm {
-	
+
 	private formBuilder: FormBuilder;
 	private form: FormGroup;
-	
+
 	constructor(formBuilder: FormBuilder){
 		this.formBuilder = formBuilder;
 		this.form = this.createForm();
 	}
-	
+
+	setAddress(place){
+		const addressForm = this.form.get('address');
+		addressForm.get('street').setValue(google.maps.places.findStreet(place.address_components));
+		addressForm.get('number').setValue(google.maps.places.findAddressNumber(place.address_components));
+		addressForm.get('neighborhoods').setValue(google.maps.places.findNeighborhoods(place.address_components));
+		addressForm.get('zipCode').setValue(google.maps.places.findZipCode(place.address_components));
+		addressForm.get('state').setValue(google.maps.places.findState(place.address_components));
+		addressForm.get('city').setValue(google.maps.places.findCity(place.address_components));
+	}
+
+	getForm(): FormGroup {
+		return this.form;
+	}
+
 	private createForm(): FormGroup {
-		
+
 		let form = this.formBuilder.group({
 			name: ['', [Validators.required]],
 			email: ['', [Validators.required, Validators.email]],
@@ -28,16 +44,12 @@ export class RegisterPageForm {
 				state: ['', [Validators.required]]
 			})
 		});
-		
+
 		form.get('repeatPassword').setValidators(matchPasswordAndRepeatPassword(form));
-		
+
 		return form;
 	}
-	
-	getForm(): FormGroup {
-		return this.form;
-	}
-	
+
 }
 
 function matchPasswordAndRepeatPassword(form: FormGroup): ValidatorFn {

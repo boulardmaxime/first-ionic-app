@@ -2,7 +2,7 @@ import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { AngularFireModule } from '@angular/fire/compat';
 import { ReactiveFormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
-import { IonicModule, ToastController } from '@ionic/angular';
+import { IonicModule, NavController, ToastController } from '@ionic/angular';
 import { Store, StoreModule } from '@ngrx/store';
 import { AppRoutingModule } from 'src/app/app-routing.module';
 import { User } from 'src/app/model/user/user';
@@ -19,6 +19,7 @@ describe('LoginPage', () => {
   let component: LoginPage;
   let fixture: ComponentFixture<LoginPage>;
   let router: Router;
+  let navController: NavController;
   let page;
   let store: Store<AppState>;
   let toastController: ToastController;
@@ -39,6 +40,7 @@ describe('LoginPage', () => {
 
     fixture = TestBed.createComponent(LoginPage);
 	router = TestBed.get(Router);
+	navController = TestBed.get(NavController);
 	store = TestBed.get(Store);
 	toastController = TestBed.get(ToastController);
 
@@ -108,7 +110,7 @@ describe('LoginPage', () => {
   });
 
   it('given user is logging in, when success, then hide loading and send user to home page', () => {
-	spyOn(router, 'navigate');
+	spyOn(navController, 'navigateRoot');
 
 	fixture.detectChanges();
 	store.dispatch(login({email: 'any@email.com', password: 'anyPassword'}));
@@ -120,7 +122,7 @@ describe('LoginPage', () => {
 	store.select('login').subscribe(loginState => {
 		expect(loginState.isLoggedIn).toBeTruthy();
 	});
-	expect(router.navigate).toHaveBeenCalledWith(['home']);
+	expect(navController.navigateRoot).toHaveBeenCalledWith('home');
   });
 
   it('given user is logging in, when fail, then hide loading and show error message', () => {
